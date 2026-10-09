@@ -475,6 +475,7 @@
 
     .section-alt .card { background: var(--bg); box-shadow: none; }
     .section-alt .card:hover { box-shadow: var(--shadow-lg); }
+    .section-alt .feature { background: var(--bg); box-shadow: none; }
 
     .card-top {
       display: flex;
@@ -949,7 +950,67 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="data-title">
+    <section class="section" aria-labelledby="web-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Tools</p>
+          <h2 id="web-title">Web-ready bioacoustics</h2>
+          <p class="section-intro">Open-source plugins for <a href="https://wavesurfer.xyz">wavesurfer.js</a> that bring bioacoustic recordings, annotations and spectrograms to the browser. They power the players on audioBlast and BioAcoustica.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card-top">
+              <span class="card-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" focusable="false"><rect x="3.5" y="5" width="17" height="14" rx="2"/><path d="M8 9h4v4H8ZM14 12h3v3h-3Z"/></svg>
+              </span>
+              <span class="card-domain">wavesurfer-annotations</span>
+            </div>
+            <h3>wavesurfer-annotations</h3>
+            <p>A <a href="https://wavesurfer.xyz">wavesurfer.js</a> plugin that shows a recording’s annotations: boxes bounded in time and frequency on the spectrogram, linked to regions on the waveform.</p>
+            <ul class="tags" aria-label="Features">
+              <li>wavesurfer.js plugin</li>
+              <li>MIT</li>
+            </ul>
+            <div class="card-actions">
+              <a class="card-primary" href="https://github.com/edwbaker/wavesurfer-annotations">
+                View on GitHub
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <div class="card-more">
+                <a class="card-secondary" href="https://github.com/edwbaker/wavesurfer-annotations#readme">Documentation</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <span class="card-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" focusable="false"><rect x="3.5" y="4" width="7" height="7"/><rect x="13.5" y="4" width="7" height="7"/><rect x="3.5" y="13" width="7" height="7"/><rect x="13.5" y="13" width="7" height="7"/></svg>
+              </span>
+              <span class="card-domain">wavesurfer-tiled-spectrogram</span>
+            </div>
+            <h3>wavesurfer-tiled-spectrogram</h3>
+            <p>A wavesurfer.js plugin that shows a precomputed spectrogram from image tiles, loading only those in view, so long and ultrasonic recordings appear at once.</p>
+            <ul class="tags" aria-label="Features">
+              <li>wavesurfer.js plugin</li>
+              <li>MIT</li>
+            </ul>
+            <div class="card-actions">
+              <a class="card-primary" href="https://wavesurfer-tiled-spectrogram.acousti.cloud/demo/">
+                Try the live demo
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <div class="card-more">
+                <a class="card-secondary" href="https://github.com/edwbaker/wavesurfer-tiled-spectrogram">Source on GitHub</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" aria-labelledby="data-title">
       <div class="container">
         <div class="section-head">
           <p class="kicker">Open data</p>
