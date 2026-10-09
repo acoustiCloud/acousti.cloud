@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>acousti.cloud · Open resources for bioacoustics and ecoacoustics</title>
-  <meta name="description" content="Open resources for bioacoustics and ecoacoustics: a glossary of terms, controlled vocabularies, the audioBlast sound search and API, and a collection of quotations.">
+  <meta name="description" content="Open resources for bioacoustics and ecoacoustics: audioBlast sound recordings, a taxon browser, an API with an MCP server, a glossary, controlled vocabularies and open-source software.">
   <link rel="canonical" href="https://acousti.cloud/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <meta name="color-scheme" content="light dark">
@@ -13,7 +13,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="acousti.cloud">
   <meta property="og:title" content="acousti.cloud">
-  <meta property="og:description" content="Open resources for bioacoustics and ecoacoustics: a glossary of terms, controlled vocabularies, the audioBlast sound search and API, and a collection of quotations.">
+  <meta property="og:description" content="Open resources for bioacoustics and ecoacoustics: audioBlast sound recordings, a taxon browser, an API with an MCP server, a glossary, controlled vocabularies and open-source software.">
   <meta property="og:url" content="https://acousti.cloud/">
   <style>
     :root {
@@ -247,134 +247,38 @@
       text-wrap: pretty;
     }
 
-    .search {
-      position: relative;
-      max-width: 36rem;
-      margin: 2.25rem auto 0;
-      text-align: left;
-    }
-
-    .search-field {
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-      padding: .375rem .375rem .375rem 1rem;
-      background: var(--surface);
-      border: 1px solid var(--field-line);
-      border-radius: .875rem;
-      box-shadow: var(--shadow);
-      transition: border-color .15s ease, box-shadow .15s ease;
-    }
-
-    .search-field:focus-within {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 4px var(--ring), var(--shadow);
-    }
-
-    .search-field .icon { width: 1.25rem; height: 1.25rem; color: var(--muted); }
-
-    .search input {
-      flex: 1;
-      min-width: 0;
-      height: 2.75rem;
-      padding: 0 .25rem;
-      border: 0;
-      background: transparent;
-      color: var(--ink);
-      font: inherit;
-      font-size: 1.0625rem;
-      -webkit-appearance: none;
-      appearance: none;
-    }
-
-    .search input::placeholder { color: var(--muted); opacity: 1; }
-    .search input:focus { outline: none; }
-
-    .search button {
-      flex: none;
-      height: 2.75rem;
-      padding: 0 1.25rem;
-      border: 0;
-      border-radius: .625rem;
-      background: var(--accent);
-      color: var(--on-accent);
-      font: inherit;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color .15s ease;
-    }
-
-    .search button:hover { background: var(--accent-hover); }
-    .search button:focus-visible { outline-offset: 3px; }
-
-    @media (forced-colors: active) {
-      .search-field:focus-within { outline: 2px solid CanvasText; }
-    }
-
-    .suggestions {
-      position: absolute;
-      top: calc(100% + .5rem);
-      right: 0;
-      left: 0;
-      z-index: 10;
-      max-height: min(22rem, 55vh);
-      margin: 0;
-      padding: .375rem;
-      overflow-y: auto;
-      list-style: none;
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: .875rem;
-      box-shadow: var(--shadow-lg);
-    }
-
-    .suggestions li {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: .625rem .75rem;
-      border-radius: .5rem;
-      cursor: pointer;
-    }
-
-    .suggestions li:hover,
-    .suggestions li[aria-selected="true"] { background: var(--accent-soft); }
-
-    .suggestions li[aria-selected="true"] {
-      outline: 2px solid var(--accent);
-      outline-offset: -2px;
-    }
-
-    .suggestion-detail {
-      color: var(--muted);
-      font-size: .8125rem;
-      text-align: right;
-    }
-
-    .examples {
+    .hero-actions {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
+      gap: .75rem;
+      margin-top: 2.25rem;
+    }
+
+    .button {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: .5rem;
-      max-width: 36rem;
-      margin: 1.125rem auto 0;
-      color: var(--muted);
-      font-size: .875rem;
-    }
-
-    .examples a {
-      padding: .25rem .75rem;
-      border: 1px solid var(--line);
-      border-radius: 999px;
+      min-height: 2.75rem;
+      padding: 0 1.25rem;
+      border: 1px solid var(--field-line);
+      border-radius: .75rem;
       background: var(--surface);
       color: var(--ink);
+      font-weight: 600;
       text-decoration: none;
-      transition: border-color .15s ease, color .15s ease;
+      transition: border-color .15s ease, color .15s ease, background-color .15s ease;
     }
 
-    .examples a:hover { border-color: var(--accent); color: var(--accent); }
+    .button:hover { border-color: var(--accent); color: var(--accent); }
+
+    .button-primary {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: var(--on-accent);
+    }
+
+    .button-primary:hover { border-color: var(--accent-hover); background: var(--accent-hover); color: var(--on-accent); }
 
     .wave {
       position: relative;
@@ -633,6 +537,16 @@
       font-weight: 600;
     }
 
+    .mcp-list {
+      margin: .75rem 0 0;
+      padding-left: 1.25rem;
+      color: var(--muted);
+      font-size: .9375rem;
+    }
+
+    .mcp-list li + li { margin-top: .25rem; }
+    .mcp-list strong { color: var(--ink); }
+
     .command {
       margin-top: auto;
       padding-top: 1.25rem;
@@ -758,8 +672,9 @@
       </a>
       <nav aria-label="Main">
         <ul class="nav">
-          <li><a href="https://glossary.acousti.cloud/">Glossary</a></li>
           <li><a href="https://audioblast.org/">audioBlast</a></li>
+          <li><a href="https://browse.acousti.cloud/">Browse</a></li>
+          <li><a href="https://glossary.acousti.cloud/">Glossary</a></li>
           <li class="nav-hide-sm"><a href="https://quotes.acousti.cloud/">Quotes</a></li>
           <li class="nav-hide-xs">
             <a class="nav-github" href="https://github.com/acoustiCloud/acousti.cloud" aria-label="acousti.cloud on GitHub">
@@ -775,24 +690,13 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="container">
         <h1 id="hero-title">Open resources for bioacoustics and ecoacoustics</h1>
-        <p class="hero-lead">A glossary of terms, controlled vocabularies, searchable sound recordings and tools for anyone working with animal sounds and soundscapes.</p>
+        <p class="hero-lead">Search and browse the world’s animal sound recordings, look up the terms used to describe them, and build on open data, vocabularies and software.</p>
 
-        <form class="search" id="glossary-search" role="search" action="https://glossary.acousti.cloud/" method="get">
-          <label class="visually-hidden" for="glossary-search-input">Search the Bioacoustics &amp; Ecoacoustics Glossary</label>
-          <div class="search-field">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
-            <input type="search" id="glossary-search-input" name="q" placeholder="Search glossary terms" autocomplete="off" spellcheck="false">
-            <button type="submit">Search</button>
-          </div>
-        </form>
-
-        <p class="examples">
-          <span>Try</span>
-          <a href="https://glossary.acousti.cloud/soundscape">soundscape</a>
-          <a href="https://glossary.acousti.cloud/stridulation">stridulation</a>
-          <a href="https://glossary.acousti.cloud/biophony">biophony</a>
-          <a href="https://glossary.acousti.cloud/acoustic_index">acoustic index</a>
-        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://audioblast.org/">Search recordings</a>
+          <a class="button" href="https://browse.acousti.cloud/">Browse by species</a>
+          <a class="button" href="https://glossary.acousti.cloud/">Read the glossary</a>
+        </div>
 
         <div class="wave" aria-hidden="true">
           <svg viewBox="0 0 1200 96" preserveAspectRatio="xMidYMid slice" focusable="false"><path id="wave-bars" d="M4 46V50M12 46V50M20 46V50M28 46V50M36 44.7V51.3M44 42.7V53.3M52 41.6V54.4M60 38.1V57.9M68 41.7V54.3M76 42.2V53.8M84 45.1V50.9M92 45.4V50.6M100 43.3V52.7M108 38.7V57.3M116 39.1V56.9M124 35.8V60.2M132 31V65M140 29.5V66.5M148 35.7V60.3M156 39.8V56.2M164 39.4V56.6M172 43.1V52.9M180 37.7V58.3M188 37.5V58.5M196 35.2V60.8M204 32.6V63.4M212 28.5V67.5M220 22V74M228 31.9V64.1M236 31.2V64.8M244 35.2V60.8M252 40.3V55.7M260 41.9V54.1M268 44.1V51.9M276 43.4V52.6M284 40.7V55.3M292 34.4V61.6M300 32.9V63.1M308 32V64M316 29.1V66.9M324 32.4V63.6M332 36.6V59.4M340 36.3V59.7M348 38.8V57.2M356 41V55M364 37.5V58.5M372 34.5V61.5M380 26.9V69.1M388 23.7V72.3M396 26.2V69.8M404 13.8V82.2M412 27.1V68.9M420 24.1V71.9M428 22.8V73.2M436 33.4V62.6M444 33.1V62.9M452 38.7V57.3M460 34.8V61.2M468 33V63M476 31.8V64.2M484 24.6V71.4M492 27.2V68.8M500 17.9V78.1M508 16.9V79.1M516 17.2V78.8M524 19.3V76.7M532 15.8V80.2M540 19.1V76.9M548 29.7V66.3M556 32.2V63.8M564 39.7V56.3M572 37.8V58.2M580 38.2V57.8M588 34.2V61.8M596 31.3V64.7M604 32V64M612 27.4V68.6M620 21.2V74.8M628 30.4V65.6M636 26.5V69.5M644 33.4V62.6M652 37.1V58.9M660 40V56M668 37.1V58.9M676 40V56M684 36.9V59.1M692 31.9V64.1M700 21.3V74.7M708 28.3V67.7M716 20.4V75.6M724 18.8V77.2M732 16.2V79.8M740 22.1V73.9M748 27.5V68.5M756 37.2V58.8M764 39.4V56.6M772 41.2V54.8M780 38.3V57.7M788 34.8V61.2M796 36.7V59.3M804 33.5V62.5M812 30.9V65.1M820 30.9V65.1M828 30.3V65.7M836 33.2V62.8M844 39.2V56.8M852 42.6V53.4M860 41.5V54.5M868 40.8V55.2M876 37.1V58.9M884 30V66M892 27.7V68.3M900 26V70M908 22.6V73.4M916 21.8V74.2M924 31.9V64.1M932 25.5V70.5M940 31.6V64.4M948 35.6V60.4M956 39.6V56.4M964 42.9V53.1M972 42.9V53.1M980 42.5V53.5M988 36.9V59.1M996 37.7V58.3M1004 36V60M1012 34.7V61.3M1020 37V59M1028 39V57M1036 43.3V52.7M1044 45.3V50.7M1052 45.8V50.2M1060 45.5V50.5M1068 43.2V52.8M1076 42.1V53.9M1084 34.6V61.4M1092 35V61M1100 39.2V56.8M1108 41V55M1116 43.4V52.6M1124 45.3V50.7M1132 46V50M1140 44V52M1148 40.7V55.3M1156 40.7V55.3M1164 41.3V54.7M1172 44.7V51.3M1180 46V50M1188 46V50M1196 46V50"/></svg>
@@ -801,14 +705,129 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="resources-title">
+    <section class="section" aria-labelledby="audioblast-title">
       <div class="container">
         <div class="section-head">
-          <p class="kicker">Resources</p>
-          <h2 id="resources-title">Explore acousti.cloud</h2>
+          <p class="kicker">Recordings and data</p>
+          <h2 id="audioblast-title">audioBlast</h2>
+          <p class="section-intro">audioBlast aims to make the world’s collections of bioacoustic and ecoacoustic recordings findable, accessible and searchable, with the taxa, traits, references, specimens and locations that describe them.</p>
         </div>
 
         <div class="cards">
+          <article class="card">
+            <div class="card-top">
+              <span class="card-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" focusable="false"><path d="M4 10v4M8 6v12M12 3v18M16 7v10M20 10v4"/></svg>
+              </span>
+              <span class="card-domain">audioblast.org</span>
+            </div>
+            <h3>audioBlast</h3>
+            <p>Search recordings alongside their annotations, analyses and traits, from species to soundscapes.</p>
+            <ul class="tags" aria-label="Features">
+              <li>Recordings</li>
+              <li>Annotations</li>
+              <li>Traits</li>
+            </ul>
+            <div class="card-actions">
+              <a class="card-primary" href="https://audioblast.org/">
+                Search audioBlast
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <div class="card-more">
+                <a class="card-secondary" href="https://docs.audioblast.org/">Documentation</a>
+                <a class="card-secondary" href="https://status.acousti.cloud/">Service status</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <span class="card-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="4.5" r="2"/><circle cx="5.5" cy="19" r="2"/><circle cx="18.5" cy="19" r="2"/><circle cx="12" cy="13" r="2"/><path d="M12 6.5V11M10.6 14.4 6.9 17.2M13.4 14.4l3.7 2.8"/></svg>
+              </span>
+              <span class="card-domain">browse.acousti.cloud</span>
+            </div>
+            <h3>Browse by taxon</h3>
+            <p>A page for each taxon with recordings in audioBlast, arranged by the Catalogue of Life classification, with its recordings, how its sound has been written down, and links to the analysis viewer.</p>
+            <ul class="tags" aria-label="Features">
+              <li>Catalogue of Life</li>
+              <li>Static pages</li>
+            </ul>
+            <div class="card-actions">
+              <a class="card-primary" href="https://browse.acousti.cloud/">
+                Browse the taxa
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <div class="card-more">
+                <a class="card-secondary" href="https://github.com/acoustiCloud/browse.acousti.cloud">Source on GitHub</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <span class="card-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" focusable="false"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.5"/><path d="M4.5 5.5v13c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5v-13M4.5 12c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5"/></svg>
+              </span>
+              <span class="card-domain">api.audioblast.org</span>
+            </div>
+            <h3>audioBlast API</h3>
+            <p>Query recordings, annotations, taxa and traits, and analysis results such as acoustic indices and BirdNET identifications, as JSON, or let an AI assistant query them through the MCP server.</p>
+            <ul class="tags" aria-label="Features">
+              <li>JSON</li>
+              <li>MCP server</li>
+              <li>Acoustic indices</li>
+              <li>BirdNET</li>
+            </ul>
+            <div class="card-actions">
+              <a class="card-primary" href="https://api.audioblast.org/">
+                Explore the API
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <div class="card-more">
+                <a class="card-secondary" href="#mcp-title">Connect an AI assistant</a>
+                <a class="card-secondary" href="https://github.com/audioblast/abPython">Python client</a>
+                <a class="card-secondary" href="https://cran.r-project.org/package=sonicscrewdriver">R package</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <span class="card-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" focusable="false"><path d="M3 4.5v6.3c0 .4.2.8.4 1.1l8.7 8.7a1.5 1.5 0 0 0 2.1 0l6.3-6.3a1.5 1.5 0 0 0 0-2.1l-8.7-8.7a1.5 1.5 0 0 0-1.1-.5H4.5A1.5 1.5 0 0 0 3 4.5Z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
+              </span>
+              <span class="card-domain">vocab.audioblast.org</span>
+            </div>
+            <h3>audioBlast Vocabulary Server</h3>
+            <p>Controlled vocabularies for describing animal sounds and how they are recorded, from call types and sound production methods to recording devices.</p>
+            <ul class="tags" aria-label="Features">
+              <li>Linked data</li>
+              <li>MCP server</li>
+            </ul>
+            <div class="card-actions">
+              <a class="card-primary" href="https://vocab.audioblast.org/">
+                Browse the vocabularies
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <div class="card-more">
+                <a class="card-secondary" href="https://vocab.audioblast.org/api/">API documentation</a>
+                <a class="card-secondary" href="https://github.com/audioblast/vocabularies">Suggest a term</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" aria-labelledby="language-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Resources</p>
+          <h2 id="language-title">Terms, quotations and R packages</h2>
+        </div>
+
+        <div class="cards cards-3">
           <article class="card">
             <div class="card-top">
               <span class="card-icon" aria-hidden="true">
@@ -858,91 +877,28 @@
               </div>
             </div>
           </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-alt" aria-labelledby="audioblast-title">
-      <div class="container">
-        <div class="section-head">
-          <p class="kicker">Recordings and data</p>
-          <h2 id="audioblast-title">audioBlast</h2>
-          <p class="section-intro">audioBlast aims to make the world’s collections of bioacoustic and ecoacoustic recordings findable, accessible and searchable.</p>
-        </div>
-
-        <div class="cards cards-3">
-          <article class="card">
-            <div class="card-top">
-              <span class="card-icon" aria-hidden="true">
-                <svg class="icon" viewBox="0 0 24 24" focusable="false"><path d="M4 10v4M8 6v12M12 3v18M16 7v10M20 10v4"/></svg>
-              </span>
-              <span class="card-domain">audioblast.org</span>
-            </div>
-            <h3>audioBlast</h3>
-            <p>Search recordings alongside their annotations, analyses and traits, from species to soundscapes.</p>
-            <ul class="tags" aria-label="Features">
-              <li>Recordings</li>
-              <li>Annotations</li>
-              <li>Traits</li>
-            </ul>
-            <div class="card-actions">
-              <a class="card-primary" href="https://audioblast.org/">
-                Search audioBlast
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </a>
-              <div class="card-more">
-                <a class="card-secondary" href="https://docs.audioblast.org/">Documentation</a>
-              </div>
-            </div>
-          </article>
 
           <article class="card">
             <div class="card-top">
               <span class="card-icon" aria-hidden="true">
-                <svg class="icon" viewBox="0 0 24 24" focusable="false"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.5"/><path d="M4.5 5.5v13c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5v-13M4.5 12c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5"/></svg>
+                <svg class="icon" viewBox="0 0 24 24" focusable="false"><path d="M3 12h3l2-6 3 12 3-9 2 3h5"/></svg>
               </span>
-              <span class="card-domain">api.audioblast.org</span>
+              <span class="card-domain">revamp.ebaker.me.uk</span>
             </div>
-            <h3>audioBlast API</h3>
-            <p>Query recordings, annotations, taxa and traits, and analysis results such as acoustic indices and BirdNET identifications, as JSON.</p>
+            <h3>ReVAMP</h3>
+            <p>An R interface to the Vamp audio analysis plugins, for running plugins such as acoustic indices and onset detection on recordings and getting the results as data frames.</p>
             <ul class="tags" aria-label="Features">
-              <li>JSON</li>
-              <li>Acoustic indices</li>
-              <li>BirdNET</li>
+              <li>R package</li>
+              <li>CRAN</li>
             </ul>
             <div class="card-actions">
-              <a class="card-primary" href="https://api.audioblast.org/">
-                Explore the API
+              <a class="card-primary" href="https://revamp.ebaker.me.uk/">
+                Visit the package site
                 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
               </a>
               <div class="card-more">
-                <a class="card-secondary" href="https://github.com/audioblast/abPython">Python client</a>
-                <a class="card-secondary" href="https://cran.r-project.org/package=sonicscrewdriver">R package</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card-top">
-              <span class="card-icon" aria-hidden="true">
-                <svg class="icon" viewBox="0 0 24 24" focusable="false"><path d="M3 4.5v6.3c0 .4.2.8.4 1.1l8.7 8.7a1.5 1.5 0 0 0 2.1 0l6.3-6.3a1.5 1.5 0 0 0 0-2.1l-8.7-8.7a1.5 1.5 0 0 0-1.1-.5H4.5A1.5 1.5 0 0 0 3 4.5Z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
-              </span>
-              <span class="card-domain">vocab.audioblast.org</span>
-            </div>
-            <h3>audioBlast Vocabulary Server</h3>
-            <p>Controlled vocabularies for describing animal sounds and how they are recorded, from call types and sound production methods to recording devices.</p>
-            <ul class="tags" aria-label="Features">
-              <li>Linked data</li>
-              <li>MCP server</li>
-            </ul>
-            <div class="card-actions">
-              <a class="card-primary" href="https://vocab.audioblast.org/">
-                Browse the vocabularies
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </a>
-              <div class="card-more">
-                <a class="card-secondary" href="https://vocab.audioblast.org/api/">API documentation</a>
-                <a class="card-secondary" href="https://github.com/audioblast/vocabularies">Suggest a term</a>
+                <a class="card-secondary" href="https://cran.r-project.org/package=ReVAMP">On CRAN</a>
+                <a class="card-secondary" href="https://github.com/edwbaker/ReVAMP">Source on GitHub</a>
               </div>
             </div>
           </article>
@@ -950,7 +906,7 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="web-title">
+    <section class="section" id="tools" aria-labelledby="web-title">
       <div class="container">
         <div class="section-head">
           <p class="kicker">Tools</p>
@@ -959,6 +915,8 @@
         </div>
 
         <div class="cards">
+
+
           <article class="card">
             <div class="card-top">
               <span class="card-icon" aria-hidden="true">
@@ -967,7 +925,7 @@
               <span class="card-domain">wavesurfer-annotations</span>
             </div>
             <h3>wavesurfer-annotations</h3>
-            <p>A <a href="https://wavesurfer.xyz">wavesurfer.js</a> plugin that shows a recording’s annotations: boxes bounded in time and frequency on the spectrogram, linked to regions on the waveform.</p>
+            <p>A wavesurfer.js plugin that shows a recording’s annotations: boxes bounded in time and frequency on the spectrogram, linked to regions on the waveform.</p>
             <ul class="tags" aria-label="Features">
               <li>wavesurfer.js plugin</li>
               <li>MIT</li>
@@ -1014,8 +972,8 @@
       <div class="container">
         <div class="section-head">
           <p class="kicker">Open data</p>
-          <h2 id="data-title">Reuse the glossary</h2>
-          <p class="section-intro">The glossary is published under a <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> licence, and software can read it as well as people. The audioBlast Vocabulary Server has the same kind of API, linked data and MCP server.</p>
+          <h2 id="data-title">Reuse the data</h2>
+          <p class="section-intro">The glossary is published under a <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> licence, and software can read it as well as people. The audioBlast API and Vocabulary Server offer the same kinds of access.</p>
         </div>
 
         <div class="features">
@@ -1023,10 +981,12 @@
             <span class="feature-icon" aria-hidden="true">
               <svg class="icon" viewBox="0 0 24 24" focusable="false"><path d="M8 4H7a2 2 0 0 0-2 2v3.5A2.5 2.5 0 0 1 2.5 12 2.5 2.5 0 0 1 5 14.5V18a2 2 0 0 0 2 2h1"/><path d="M16 4h1a2 2 0 0 1 2 2v3.5a2.5 2.5 0 0 0 2.5 2.5 2.5 2.5 0 0 0-2.5 2.5V18a2 2 0 0 1-2 2h-1"/></svg>
             </span>
-            <h3>JSON API</h3>
-            <p>Search terms by name or acronym, or fetch a term’s definition and references by its URI or short name.</p>
+            <h3>JSON APIs</h3>
+            <p>Query audioBlast’s recordings, taxa and traits, or search the glossary and vocabularies for a term by name or acronym and fetch its definition and references by its URI.</p>
             <div class="feature-links">
-              <a href="https://glossary.acousti.cloud/api/">API documentation</a>
+              <a href="https://api.audioblast.org/">audioBlast API</a>
+              <a href="https://glossary.acousti.cloud/api/">Glossary API</a>
+              <a href="https://vocab.audioblast.org/api/">Vocabulary API</a>
             </div>
           </div>
 
@@ -1047,16 +1007,23 @@
               <span class="feature-icon" aria-hidden="true">
                 <svg class="icon" viewBox="0 0 24 24" focusable="false"><path d="M9 2.5v5M15 2.5v5M6.5 7.5h11V11a5.5 5.5 0 0 1-11 0ZM12 16.5v5"/></svg>
               </span>
-              <h3>MCP server</h3>
-              <p>Let AI assistants such as Claude search the glossary and read its definitions and references.</p>
+              <h3 id="mcp-title">MCP servers</h3>
+              <p>Let AI assistants such as Claude search recordings, taxa and traits, and read the definitions of terms and their references, through the Model Context Protocol. Each server is read-only.</p>
+              <ul class="mcp-list">
+                <li><strong>audioBlast API</strong>: the recordings, taxa, traits, references, specimens and locations</li>
+                <li><strong>Vocabulary Server</strong>: the terms for calls, sound production and recording methods</li>
+                <li><strong>Glossary</strong>: the terms of bioacoustics and ecoacoustics</li>
+              </ul>
             </div>
             <div class="command">
               <div class="command-window">
                 <div class="command-head">
-                  <span>Add it to Claude Code</span>
+                  <span>Add them to Claude Code</span>
                   <button type="button" class="copy-button" data-copy="mcp-command" hidden>Copy</button>
                 </div>
-                <pre><code id="mcp-command">claude mcp add --transport http abg https://<wbr>glossary.acousti.cloud/api/mcp</code></pre>
+                <pre><code id="mcp-command">claude mcp add --transport http audioblast https://<wbr>api.audioblast.org/mcp
+claude mcp add --transport http audioblast-vocab https://<wbr>vocab.audioblast.org/api/mcp
+claude mcp add --transport http glossary https://<wbr>glossary.acousti.cloud/api/mcp</code></pre>
               </div>
               <p class="visually-hidden" role="status" id="copy-status"></p>
             </div>
@@ -1080,8 +1047,10 @@
           <div>
             <h2 class="footer-heading">acousti.cloud</h2>
             <ul class="footer-links">
+              <li><a href="https://browse.acousti.cloud/">Browse by taxon</a></li>
               <li><a href="https://glossary.acousti.cloud/">Glossary</a></li>
               <li><a href="https://quotes.acousti.cloud/">Quotes</a></li>
+              <li><a href="https://revamp.ebaker.me.uk/">ReVAMP</a></li>
               <li><a href="https://github.com/acoustiCloud/acousti.cloud">GitHub</a></li>
             </ul>
           </div>
@@ -1090,6 +1059,7 @@
             <ul class="footer-links">
               <li><a href="https://audioblast.org/">audioBlast</a></li>
               <li><a href="https://api.audioblast.org/">API</a></li>
+              <li><a href="https://docs.audioblast.org/">Documentation</a></li>
               <li><a href="https://vocab.audioblast.org/">Vocabulary server</a></li>
               <li><a href="https://status.acousti.cloud/">Service status</a></li>
             </ul>
@@ -1103,160 +1073,6 @@
   </footer>
 
   <script>
-    //Suggests glossary terms as a visitor types, as the search box on the glossary does.
-    //Without this script the search still works, opening the glossary's page of search results.
-    (function () {
-      "use strict";
-
-      var form = document.getElementById("glossary-search");
-      var input = document.getElementById("glossary-search-input");
-      if (!form || !input || !window.fetch) {
-        return;
-      }
-
-      var endpoint = "https://glossary.acousti.cloud/api/search/";
-      var list = document.createElement("ul");
-      list.id = "glossary-search-suggestions";
-      list.className = "suggestions";
-      list.setAttribute("role", "listbox");
-      list.setAttribute("aria-label", "Glossary terms");
-      list.hidden = true;
-      form.appendChild(list);
-
-      input.setAttribute("role", "combobox");
-      input.setAttribute("aria-autocomplete", "list");
-      input.setAttribute("aria-controls", list.id);
-      input.setAttribute("aria-expanded", "false");
-
-      var suggestions = [];
-      var active = -1;
-      var timer = null;
-      //Only the answer to the latest request is shown, as answers can arrive out of order
-      var latest = 0;
-
-      function close() {
-        list.hidden = true;
-        list.innerHTML = "";
-        suggestions = [];
-        active = -1;
-        input.setAttribute("aria-expanded", "false");
-        input.removeAttribute("aria-activedescendant");
-      }
-
-      function highlight(index) {
-        var items = list.children;
-        if (active >= 0 && items[active]) {
-          items[active].setAttribute("aria-selected", "false");
-        }
-        active = index;
-        if (active >= 0 && items[active]) {
-          items[active].setAttribute("aria-selected", "true");
-          input.setAttribute("aria-activedescendant", items[active].id);
-          items[active].scrollIntoView({block: "nearest"});
-        } else {
-          input.removeAttribute("aria-activedescendant");
-        }
-      }
-
-      function go(index) {
-        var uri = suggestions[index].uri;
-        close();
-        window.location.href = uri;
-      }
-
-      function show(terms) {
-        close();
-        if (terms.length === 0) {
-          return;
-        }
-        suggestions = terms;
-        terms.forEach(function (term, index) {
-          var item = document.createElement("li");
-          item.id = "glossary-search-suggestion-" + index;
-          item.setAttribute("role", "option");
-          item.setAttribute("aria-selected", "false");
-
-          var name = document.createElement("span");
-          //A term's acronym follows its name, as a visitor may have searched for it
-          name.textContent = term.acronym ? term.name + " (" + term.acronym + ")" : term.name;
-          item.appendChild(name);
-
-          var details = [];
-          if (term.synonym_of) {
-            details.push("Synonym of " + term.synonym_of);
-          }
-          if (term.vocabulary) {
-            details.push(term.vocabulary);
-          }
-          if (details.length > 0) {
-            var detail = document.createElement("span");
-            detail.className = "suggestion-detail";
-            detail.textContent = details.join(" · ");
-            item.appendChild(detail);
-          }
-
-          //Keep focus in the search box, so choosing with the mouse doesn't close the list first
-          item.addEventListener("mousedown", function (event) {
-            event.preventDefault();
-          });
-          item.addEventListener("click", function () {
-            go(index);
-          });
-          list.appendChild(item);
-        });
-        list.hidden = false;
-        input.setAttribute("aria-expanded", "true");
-      }
-
-      input.addEventListener("input", function () {
-        clearTimeout(timer);
-        var query = input.value.trim();
-        if (query.length < 2) {
-          latest++;
-          close();
-          return;
-        }
-        timer = setTimeout(function () {
-          var request = ++latest;
-          fetch(endpoint + "?q=" + encodeURIComponent(query))
-            .then(function (response) {
-              return response.ok ? response.json() : [];
-            })
-            .then(function (terms) {
-              if (request === latest && Array.isArray(terms)) {
-                show(terms);
-              }
-            })
-            .catch(function () {
-              if (request === latest) {
-                close();
-              }
-            });
-        }, 150);
-      });
-
-      input.addEventListener("keydown", function (event) {
-        if (list.hidden || suggestions.length === 0) {
-          return;
-        }
-        if (event.key === "ArrowDown") {
-          event.preventDefault();
-          highlight((active + 1) % suggestions.length);
-        } else if (event.key === "ArrowUp") {
-          event.preventDefault();
-          highlight((active <= 0) ? suggestions.length - 1 : active - 1);
-        } else if (event.key === "Enter" && active >= 0) {
-          //Enter without a highlighted suggestion submits the form, for the glossary's page of results
-          event.preventDefault();
-          go(active);
-        } else if (event.key === "Escape") {
-          close();
-        }
-      });
-
-      input.addEventListener("blur", close);
-    })();
-
     //Shows a copy button beside a command, where the browser allows copying to the clipboard
     (function () {
       "use strict";
