@@ -824,10 +824,10 @@
       <div class="container">
         <div class="section-head">
           <p class="kicker">Resources</p>
-          <h2 id="language-title">Terms, quotations and R packages</h2>
+          <h2 id="language-title">Terms and quotations</h2>
         </div>
 
-        <div class="cards cards-3">
+        <div class="cards">
           <article class="card">
             <div class="card-top">
               <span class="card-icon" aria-hidden="true">
@@ -877,7 +877,19 @@
               </div>
             </div>
           </article>
+        </div>
+      </div>
+    </section>
 
+    <section class="section" id="r-packages" aria-labelledby="r-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Software</p>
+          <h2 id="r-title">R packages</h2>
+          <p class="section-intro">Packages for working with bioacoustic and ecoacoustic recordings in R.</p>
+        </div>
+
+        <div class="cards">
           <article class="card">
             <div class="card-top">
               <span class="card-icon" aria-hidden="true">
@@ -902,16 +914,40 @@
               </div>
             </div>
           </article>
+
+          <article class="card">
+            <div class="card-top">
+              <span class="card-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" focusable="false"><path d="M5 9v6M9 6v12M13 8v8M17 5v14M21 10v4"/></svg>
+              </span>
+              <span class="card-domain">sonicscrewdriver.ebaker.me.uk</span>
+            </div>
+            <h3>SonicScrewdriveR</h3>
+            <p>A toolset in R for the analysis and visualisation of bioacoustic and ecoacoustic datasets.</p>
+            <ul class="tags" aria-label="Features">
+              <li>R package</li>
+              <li>GPL v3</li>
+            </ul>
+            <div class="card-actions">
+              <a class="card-primary" href="https://sonicscrewdriver.ebaker.me.uk/">
+                Visit the package site
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <div class="card-more">
+                <a class="card-secondary" href="https://github.com/edwbaker/SonicScrewdriveR">Source on GitHub</a>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="tools" aria-labelledby="web-title">
+    <section class="section section-alt" id="tools" aria-labelledby="web-title">
       <div class="container">
         <div class="section-head">
           <p class="kicker">Tools</p>
           <h2 id="web-title">Web-ready bioacoustics</h2>
-          <p class="section-intro">Open-source plugins for <a href="https://wavesurfer.xyz">wavesurfer.js</a> that bring bioacoustic recordings, annotations and spectrograms to the browser. They power the players on audioBlast and BioAcoustica.</p>
+          <p class="section-intro">Open-source plugins for <a href="https://wavesurfer.xyz">wavesurfer.js</a>, and a WebAssembly host for Vamp plugins, that bring bioacoustic recordings, annotations, spectrograms and analysis to the browser. They power the players on audioBlast and BioAcoustica.</p>
         </div>
 
         <div class="cards">
@@ -964,11 +1000,35 @@
               </div>
             </div>
           </article>
+
+          <article class="card">
+            <div class="card-top">
+              <span class="card-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" focusable="false"><path d="M3 12h3l2-6 3 12 3-9 2 3h5"/></svg>
+              </span>
+              <span class="card-domain">vamp-wasm</span>
+            </div>
+            <h3>vamp-wasm</h3>
+            <p>A WebAssembly host for Vamp audio analysis plugins, to run them in a web browser or Node.js and analyse a recording without a server.</p>
+            <ul class="tags" aria-label="Features">
+              <li>WebAssembly</li>
+              <li>Vamp plugins</li>
+            </ul>
+            <div class="card-actions">
+              <a class="card-primary" href="https://github.com/edwbaker/vamp-wasm">
+                View on GitHub
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <div class="card-more">
+                <a class="card-secondary" href="https://github.com/edwbaker/vamp-wasm#readme">Documentation</a>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="section section-alt" aria-labelledby="data-title">
+    <section class="section" aria-labelledby="data-title">
       <div class="container">
         <div class="section-head">
           <p class="kicker">Open data</p>
